@@ -1,0 +1,155 @@
+\section{Cauchy sequences}\label{i:sec:5.1}
+
+\begin{defn}[Sequences]\label{i:5.1.1}
+  Let \(m\) be an integer.
+  A \emph{sequence \((a_n)_{n = m}^{\infty}\) of rational numbers} is any function from the set \(\Z_{\geq m}\) to \(\Q\), i.e., a mapping which assigns to each integer \(n\) greater than or equal to \(m\), a rational number \(a_n\).
+  More informally, a sequence \((a_n)_{n = m}^{\infty}\) of rational numbers is a collection of rationals \(a_m, a_{m + 1}, a_{m + 2}, \dots\).
+\end{defn}
+
+\setcounter{thm}{2}
+\begin{defn}[\(\varepsilon\)-steadiness]\label{i:5.1.3}
+  Let \(\varepsilon \in \Q^+\).
+  A sequence \((a_n)_{n = m}^{\infty}\) is said to be \emph{\(\varepsilon\)-steady} iff each pair \(a_j, a_k\) of sequence elements is \(\varepsilon\)-close for every natural number \(j, k \in \Z_{\geq m}\).
+  In other words, the sequence \(a_m, a_{m + 1}, a_{m + 2}, \dots\) is \(\varepsilon\)-steady iff \(d(a_j, a_k) \leq \varepsilon\) for all \(j, k \in \Z_{\geq m}\).
+\end{defn}
+
+\begin{rmk}\label{i:5.1.4}
+  \cref{i:5.1.3} is not standard in the literature;
+  we will not need it outside of this section;
+  similarly for the concept of ``eventual \(\varepsilon\)-steadiness'' below.
+  We have defined \(\varepsilon\)-steadiness for sequences whose index starts at \(m\), but clearly we can make a similar notion for sequences whose indices start from any other number:
+  a sequence \(a_N, a_{N + 1}, \dots\) is \(\varepsilon\)-steady if one has \(d(a_j, a_k) \leq \varepsilon\) for all \(j, k \in \Z_{\geq N}\).
+\end{rmk}
+
+\begin{note}
+  The notion of \(\varepsilon\)-steadiness of a sequence is simple, but does not really capture the \emph{limiting} behavior of a sequence, because it is too sensitive to the initial members of the sequence.
+  So we need a more robust notion of steadiness that does not care about the initial members of a sequence.
+\end{note}
+
+\setcounter{thm}{5}
+\begin{defn}[Eventual \(\varepsilon\)-steadiness]\label{i:5.1.6}
+  Let \(\varepsilon \in \Q^+\).
+  A sequence \((a_n)_{n = m}^{\infty}\) is said to be \emph{eventually \(\varepsilon\)-steady} iff the sequence \(a_N, a_{N + 1}, a_{N + 2}, \dots\) is \(\varepsilon\)-steady for some integer \(N \geq m\).
+  In other words, the sequence \(a_m, a_{m + 1}, a_{m + 2}, \dots\) is eventually \(\varepsilon\)-steady iff there exists an \(N \in \Z_{\geq m}\) such that \(\abs{a_j - a_k} \leq \varepsilon\) for all \(j, k \in \Z_{\geq N}\).
+\end{defn}
+
+\setcounter{thm}{7}
+\begin{defn}[Cauchy sequences]\label{i:5.1.8}
+  A sequence \((a_n)_{n = m}^{\infty}\) of rational numbers is said to be a \emph{Cauchy sequence} iff for every rational \(\varepsilon \in \Q^+\), the sequence \((a_n)_{n = m}^{\infty}\) is eventually \(\varepsilon\)-steady.
+  In other words, the sequence \(a_m, a_{m + 1}, a_{m + 2}, \dots\) is a Cauchy sequence iff for every \(\varepsilon \in \Q^+\), there exists an \(N \in \Z_{\geq m}\) such that \(\abs{a_j - a_k} \leq \varepsilon\) for all \(j, k \in \Z_{\geq N}\).
+\end{defn}
+
+\begin{rmk}\label{i:5.1.9}
+  At present, the parameter \(\varepsilon\) is restricted to be a positive rational;
+  we cannot take \(\varepsilon\) to be an arbitrary positive real number, because the real numbers have not yet been constructed.
+  However, once we do construct the real numbers, we shall see that \cref{i:5.1.8} will not change if we require \(\varepsilon\) to be real instead of rational (\cref{i:6.1.4}).
+  In other words, we will eventually prove that a sequence is eventually \(\varepsilon\)-steady for every rational \(\varepsilon \in \Q^+\) iff it is eventually \(\varepsilon\)-steady for every real \(\varepsilon \in \Q^+\).
+  This rather subtle distinction between a rational \(\varepsilon\) and a real \(\varepsilon\) turns out not to be very important in the long run, and the reader is advised not to pay too much attention as to what type of number \(\varepsilon\) should be.
+\end{rmk}
+
+\setcounter{thm}{10}
+\begin{prop}\label{i:5.1.11}
+  The sequence \((a_n)_{n = 1}^\infty\) defined by \(a_n \coloneqq 1 / n\) (i.e., the sequence \(1, 1 / 2, 1 / 3, \dots\)) is a Cauchy sequence.
+\end{prop}
+
+\begin{proof}[\pf{i:5.1.11}]
+  We have to show that for every \(\varepsilon \in \Q^+\), the sequence \(a_1, a_2, \dots\) is eventually \(\varepsilon\)-steady.
+  So let \(\varepsilon \in \Q^+\) be arbitrary.
+  We now have to find a number \(N \in \Z_{\geq 1}\) such that the sequence \(a_N, a_{N + 1}, \dots\) is \(\varepsilon\)-steady.
+  Let us see what this means.
+  This means that \(d(a_j, a_k) \leq \varepsilon\) for every \(j, k \in \Z_{\geq N}\), i.e.
+  \[
+    \abs{\dfrac{1}{j} - \dfrac{1}{k}} \leq \varepsilon \text{ for every } j, k \in \Z_{\geq N}.
+  \]
+  Now since \(j, k \in \Z_{\geq N}\), by \cref{i:4.3.12}(b) we know that \(0 < 1 / j, 1 / k \leq 1 / N\), so that
+  \begin{align*}
+             & \begin{dcases}
+                 \dfrac{-1}{N} < 0 < \dfrac{1}{j} \leq \dfrac{1}{N}  \\
+                 \dfrac{-1}{N} \leq \dfrac{-1}{k} < 0 < \dfrac{1}{N} \\
+               \end{dcases}                         &  & \by{i:ex:4.2.6}                                           \\
+    \implies & \begin{dcases}
+                 \dfrac{1}{j} - \dfrac{1}{k} \leq \dfrac{1}{N} - \dfrac{1}{k} < \dfrac{1}{N} \\
+                 \dfrac{-1}{N} < \dfrac{1}{j} - \dfrac{1}{N} \leq \dfrac{1}{j} - \dfrac{1}{k}
+               \end{dcases} &  & \by{i:4.2.9}[c,d]                         \\
+    \implies & \dfrac{-1}{N} \leq \dfrac{1}{j} - \dfrac{1}{k} \leq \dfrac{1}{N}                                    \\
+    \implies & \abs{\dfrac{1}{j} - \dfrac{1}{k}} \leq \dfrac{1}{N}.                           &  & \by{i:4.3.3}[c]
+  \end{align*}
+  So in order to force \(\abs{1 / j - 1 / k}\) to be less than or equal to \(\varepsilon\), it would be sufficient for \(1 / N\) to be less than \(\varepsilon\).
+  So all we need to do is choose an \(N\) such that \(1 / N\) is less than \(\varepsilon\), or in other words that \(N\) is greater than \(1 / \varepsilon\).
+  But this can be done thanks to \cref{i:4.4.1}.
+\end{proof}
+
+\begin{note}
+  As you can see, verifying from first principles (i.e., without using any of the machinery of limits, etc.) that a sequence is a Cauchy sequence requires some effort, even for a sequence as simple as \(1 / n\).
+  The part about selecting an \(N\) can be particularly difficult for beginners
+  - one has to think in reverse, working out what conditions on \(N\) would suffice to force the sequence \(a_N, a_{N + 1}, a_{N + 2}, \dots\) to be \(\varepsilon\)-steady, and then finding an \(N\) which obeys those conditions.
+  Later we will develop some limit laws which allow us to determine when a sequence is Cauchy more easily.
+\end{note}
+
+\begin{defn}[Bounded sequences]\label{i:5.1.12}
+  Let \(M \in \Q_{\geq 0}\).
+  A finite rational sequence \((a_n)_{n = m}^k\) is \emph{bounded by \(M\)} iff \(\abs{a_i} \leq M\) for all \(i \in \Z_{m \leq k}\).
+  An infinite rational sequence \((a_n)_{n = m}^{\infty}\) is \emph{bounded by \(M\)} iff \(\abs{a_i} \leq M\) for all \(i \in \Z_{\geq m}\).
+  A rational sequence is said to be \emph{bounded} iff it is bounded by \(M\) for some \(M \in \Q_{\geq 0}\).
+\end{defn}
+
+\setcounter{thm}{13}
+\begin{lem}[Finite sequences are bounded]\label{i:5.1.14}
+  Every finite rational sequence \((a_n)_{n = m}^k\) is bounded.
+\end{lem}
+
+\begin{proof}[\pf{i:5.1.14}]
+  We induct on \(k\) and we start with \(k = m\).
+  When \(k = m\) the rational sequence \((a_n)_{n = m}^m\) is clearly bounded, for if we choose \(M \coloneqq \abs{a_m}\) then clearly we have \(\abs{a_i} \leq M\) for all \(i \in \Z_{m \leq k}\).
+  Now suppose that we have already proved the lemma for some \(k \geq m\);
+  we now prove it for \(k + 1\), i.e., we prove every rational sequence \((a_n)_{n = m}^{k + 1}\) is bounded.
+  By the induction hypothesis we know that \((a_n)_{n = m}^k\) is bounded by some \(M \in \Q_{\geq 0}\);
+  in particular, it must be bounded by \(M + \abs{a_{k + 1}}\).
+  On the other hand, \(a_{k + 1}\) is also bounded by \(M + \abs{a_{k + 1}}\).
+  Thus, \((a_n)_{n = m}^{k + 1}\) is bounded by \(M + \abs{a_{k + 1}}\), and is hence bounded.
+  This closes the induction.
+\end{proof}
+
+\begin{note}
+  While \cref{i:5.1.14} shows that every finite rational sequence is bounded, no matter how long the finite sequence is, it does not say anything about whether an infinite rational sequence is bounded or not;
+  infinity is not a natural number.
+\end{note}
+
+\begin{lem}[Cauchy sequences are bounded]\label{i:5.1.15}
+  Every rational Cauchy sequence \((a_n)_{n = m}^{\infty}\) is bounded.
+\end{lem}
+
+\begin{proof}[\pf{i:5.1.15}]
+  Since \((a_n)_{n = m}^{\infty}\) is a rational Cauchy sequence, by \cref{i:5.1.8} we know that \((a_n)_{n = m}^{\infty}\) is eventually \(\varepsilon\)-steady for all \(\varepsilon \in \Q^+\).
+  In particular, \((a_n)_{n = m}^{\infty}\) is eventually \(1\)-steady.
+  By \cref{i:5.1.6} there exists an \(N \in \Z_{\geq m}\) such that \((a_n)_{n = N}^{\infty}\) is \(1\)-steady.
+  Fix such \(N\).
+  Since \((a_n)_{n = N}^\infty\) is \(1\)-steady, we have
+  \begin{align*}
+             & \forall j \in \Z_{\geq N}, \abs{a_j - a_N} \leq 1                                                    &  & \by{i:5.1.3}    \\
+    \implies & \forall j \in \Z_{\geq N}, \abs{a_j - a_N} + \abs{a_N} \leq 1 + \abs{a_N}                            &  & \by{i:4.2.9}[d] \\
+    \implies & \forall j \in \Z_{\geq N}, \abs{a_j - a_N + a_N} \leq \abs{a_j - a_N} + \abs{a_N} \leq 1 + \abs{a_N} &  & \by{i:4.3.3}[b] \\
+    \implies & \forall j \in \Z_{\geq N}, \abs{a_j} \leq 1 + \abs{a_N}.                                             &  & \by{i:4.2.4}
+  \end{align*}
+  Thus, by \cref{i:5.1.12} \((a_n)_{n = N}^\infty\) is bounded by \(1 + \abs{a_N}\).
+  Now we split into two cases:
+  \begin{itemize}
+    \item If \(N = m\), then we see that \((a_n)_{n = m}^\infty\) is bounded by \(1 + \abs{a_N}\).
+    \item If \(N \neq m\), then we must have \(m < N\).
+          By \cref{i:5.1.14} we know that the finite rational sequence \((a_n)_{n = m}^{N - 1}\) is bounded by some \(M \in \Q_{\geq 0}\).
+          So both \((a_n)_{n = m}^{N - 1}\) and \((a_n)_{n = N}^\infty\) are bounded by \(M + 1 + \abs{a_N}\).
+          Thus, \((a_n)_{n = m}^\infty\) is bounded by \(M + 1 + \abs{a_N}\).
+  \end{itemize}
+  From all cases above, we see that \((a_n)_{n = m}^\infty\) is bounded.
+  Since \((a_n)_{n = m}^\infty\) was arbitrary, we conclude that every rational Cauchy sequences are bounded.
+\end{proof}
+
+\exercisesection
+
+\begin{ex}\label{i:ex:5.1.1}
+  Prove \cref{i:5.1.15}.
+\end{ex}
+
+\begin{proof}[\pf{i:ex:5.1.1}]
+  See \cref{i:5.1.15}.
+\end{proof}
